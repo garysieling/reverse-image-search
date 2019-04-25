@@ -1,0 +1,6 @@
+1. Facenet
+2. Tensorflow + CUDA
+3. S3
+4. Cloudformation
+5. Apache Zeppelin
+6. Elasticsearch

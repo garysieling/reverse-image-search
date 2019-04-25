@@ -1,0 +1,1 @@
+A user wants to explore different types of objects visible in a map (ships, airports, etc) and find similar locations.

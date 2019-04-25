@@ -1,0 +1,1 @@
+A user wants to replicate google photos, e.g. for the purposes of seeing who is at the door.

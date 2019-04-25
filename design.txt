@@ -1,0 +1,16 @@
+Data pipeline:
+
+1. A set of images
+2. Normalization
+   a. Items per class
+   b. Split into test/train/validation
+   c. Resizing
+   d. Color space
+3. Feature engineering pre-processing
+4. Train one or more ML model w/ different settings (Facenet)
+5. Cluster the output at different levels
+	 a. I.e 5,10,100 clusters
+   b. Clusters of 3,3,3,3 etc
+   c. Mark approx center image for each cluster
+6. UI to visualize + name clusters
+7. Zeppelin notebooks to poke at the behavior of each of the above steps
