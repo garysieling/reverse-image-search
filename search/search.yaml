@@ -1,0 +1,148 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "A search engine"
+
+Parameters:
+  SearchEngineName:
+    Description: "Search engine domain name"
+    Type: "String"
+  ProductName:
+    Description: "Search engine product name"
+    Type: "String"
+
+#Mappings:
+
+Resources:
+  backupInvoke:
+    Type: AWS::CloudFormation::CustomResource
+    Version: "1.0"
+    Properties:
+      ServiceToken: !GetAtt registerBackup.Arn
+      FunctionName: !Ref registerBackup
+
+  registerBackup:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs8.10
+      Description: Invoke a function to create a log stream.
+      MemorySize: 128
+      Timeout: 8
+      Role: !GetAtt role.Arn
+      Tracing: Active      
+      #InlineCode: |
+      #  var aws = require('aws-sdk');
+      #  var response = require('cfn-response');
+      #  exports.handler = function(event, context) {
+      #      // For Delete requests, immediately send a SUCCESS response.
+      #      if (event.RequestType == "Delete") {
+      #          response.send(event, context, "SUCCESS");
+      #          return;
+      #      }
+      #      var responseStatus = "FAILED";
+      #      var responseData = {};
+      #      var functionName = event.ResourceProperties.FunctionName
+      #      var lambda = new aws.Lambda();
+      #      lambda.invoke({ FunctionName: functionName }, function(err, invokeResult) {
+      #          if (err) {
+      #              responseData = {Error: "Invoke call failed"};
+      #              console.log(responseData.Error + ":\n", err);
+      #          }
+      #          else responseStatus = "SUCCESS";
+      #          response.send(event, context, responseStatus, responseData);
+      #      });
+      #  };
+
+
+  ElasticsearchBackupBucket:
+    Type: "AWS::S3::Bucket"
+    Properties:
+      AccessControl: Private
+      #AccessPolicies:
+      #  Version: "2012-10-17"
+      #  Statement: 
+      #    - Effect: "Allow"
+      #    - Principal:
+      #      - Service: "es.amazonaws.com"
+      #      - Action: "sts:AssumeRole"
+
+  SearchEngineRole:
+    Type: "AWS::IAM::ServiceLinkedRole"
+    Properties:
+      AWSServiceName: "es.amazonaws.com"
+
+  SearchEngine: 
+    Type: "AWS::Elasticsearch::Domain"
+
+    Properties:
+      #AccessPolicies:
+      #  Version: "2012-10-17"
+      #  Statement:
+      #    -
+      #      Effect: "Allow"
+      #      Principal:
+      #        AWS: "arn:aws:iam::123456789012:user/es-user"
+      #      Action: "es:*"
+      #      Resource: "arn:aws:es:us-east-1:846973539254:domain/test/*"
+    
+      #AdvancedOptions:
+      DomainName: !Ref SearchEngineName
+
+      EBSOptions:
+        EBSEnabled: true
+        Iops: 0
+        VolumeSize: 10
+        VolumeType: "standard"
+      
+      ElasticsearchClusterConfig:
+        InstanceCount: 1
+        InstanceType: "t2.small.elasticsearch"
+        ZoneAwarenessEnabled: false
+
+      ElasticsearchVersion: "6.5"
+      SnapshotOptions:
+        AutomatedSnapshotStartHour: 0
+      Tags:
+        - Key: Product
+          Value: !Ref ProductName
+      VPCOptions:
+        SubnetIds:
+          - !Ref subnet
+        SecurityGroupIds:
+          - !Ref esSecurityGroup
+
+  vpc:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+
+  subnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref vpc
+      CidrBlock: "10.0.0.0/24"
+      AvailabilityZone: "us-east-1a"
+
+  esSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Search engine security"
+      VpcId: !Ref vpc
+      GroupName: "search_engine_group"
+      SecurityGroupIngress:
+        - FromPort: 443
+          IpProtocol: tcp
+          ToPort: 443
+          CidrIp: 0.0.0.0/0
+
+
+  InstanceSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Enable SSH access via port 22
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+
+#Output:
