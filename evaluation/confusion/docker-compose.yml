@@ -10,4 +10,5 @@ zeppelin:
     - 8080:8080
   volumes:
     - ./notebooks:/zeppelin/notebook
+    - ./data:/data
 

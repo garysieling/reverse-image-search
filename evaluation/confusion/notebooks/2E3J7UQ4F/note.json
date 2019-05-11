@@ -1,0 +1,629 @@
+{
+  "paragraphs": [
+    {
+      "text": "val tags = List(\n    // woods\n   /* \"cherry flooring\", \"white oak flooring\", \"red oak flooring\", \"black walnut flooring\", \"poplar flooring\", \"pine flooring\", \n    \"water softener\", \"heat pump\",\n    \"hot water expansion tank\",\n    \"fuel oil tank\",\n    \"natural gas meter\",\n    \"plumbing vent\",\n    \"wood dry rot\",\n    \"termite tubes\", \"galvanized steel pipes\", \"terra cotta pipes\", \"copper pipes\",\n    \"granite countertops\",\n    \"formica countertops\",\n    \"marble countertops\",\n    // electrical\n    \"knob and tube wiring\", \"romex wiring\", \"aluminum wiring\",\n    // problems\n    \"asbestos\",\n    \"fire damage\",\n    \"sistered beam\",\n    // exterior\n    \"alumninum siding\", \"asbestos siding\", \"brick exterior walls\", \n    \"stone exterior walls\", \"stucco siding\", \"wooden siding\",\n    // interior features\n    \"glass doorknobs\"*/\n   // \"sump pump\",\n//    \"asbestos paper insulation\",\n  //  \"breaker box\"\n//  \"fios box\"\n//\"pedestal sump pump\"\n\"smoke detector\",\n\"washing machine\",\n\"dryer\"\n)\n\nimport java.io.File\n\nval root = \"/data/images/household/\"\nnew File(root).mkdirs()\n\nval categories = (new File(root)).listFiles.filter(_.isDirectory)\n\n\ntags.filter(!categories.contains(_)).map( (tag) => new File(root + tag).mkdirs() )\n        \n(new File(root)).listFiles.filter(_.isDirectory).map( (path) => path + \"\\t\" + path.listFiles.size )",
+      "user": "anonymous",
+      "dateUpdated": "2019-02-12 19:40:30.102",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1549833449485_-1308984560",
+      "id": "20190210-211729_1008575733",
+      "dateCreated": "2019-02-10 21:17:29.485",
+      "dateStarted": "2019-02-12 19:40:30.171",
+      "dateFinished": "2019-02-12 19:40:38.893",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "results": {}
+    },
+    {
+      "text": "def contents(): String = {\n  val folderContents = (new File(root)).listFiles.filter(_.isDirectory).map( (path) => (path, path.listFiles.size ) )\n  val folderContentsLines = folderContents.map( (t: (java.io.File, Int)) => (t._1 + \"\", t._2 + \"\") ).map( (a) => a._1.substring(23) + \"\\t\" + a._2  )\n  \n  \"%table category\\tcount\\n\" + folderContentsLines.mkString(\"\\n\")\n}\n\nprint(contents)\n",
+      "user": "anonymous",
+      "dateUpdated": "2019-02-13 21:16:08.211",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1549833734163_-11493204",
+      "id": "20190210-212214_1366670745",
+      "dateCreated": "2019-02-10 21:22:14.163",
+      "dateStarted": "2019-02-10 21:29:21.882",
+      "dateFinished": "2019-02-10 21:29:22.358",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "results": {}
+    },
+    {
+      "text": "\n// TODO - how to get from the environment?\n// TODO - can I do more than one language?\n// TODO - status reporting \n// TODO - push to github\ndef splitQuery(url: String): Map[String, String] = {\n    import java.net._\n    import scala.collection.JavaConversions._\n    \n    val query = new URL(url).getQuery\n    val pairs = query.split(\"&\")\n    \n    pairs.map(\n      (pair: String) => {\n        val idx = pair.indexOf(\"=\");\n        (URLDecoder.decode(pair.substring(0, idx), \"UTF-8\") -> URLDecoder.decode(pair.substring(idx + 1), \"UTF-8\"))\n      }\n    ).toMap\n}\n\n//splitQuery(\"https://tse1.mm.bing.net/th?id=OIP.eMnBWtXVNYWK-qerspawmAHaFc&pid=Api\")(\"id\")",
+      "user": "anonymous",
+      "dateUpdated": "2019-02-10 21:29:51.268",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1549833749675_-1252607991",
+      "id": "20190210-212229_1904550363",
+      "dateCreated": "2019-02-10 21:22:29.675",
+      "dateStarted": "2019-02-10 21:29:51.303",
+      "dateFinished": "2019-02-10 21:29:51.569",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "results": {}
+    },
+    {
+      "text": "def getResults(searchTerm: String, page: Int): Iterable[String] = {\n  println(searchTerm, page)\n  \n  import java.net._\n  import java.util._\n  import java.io._\n  import javax.net.ssl.HttpsURLConnection\n  import com.google.gson.Gson\n  import com.google.gson.GsonBuilder\n  import com.google.gson.JsonObject\n  import com.google.gson.JsonParser\n\n  val subscriptionKey = \"90d32ad783f84d8ebef3d9914d958407\";\n  val host = \"https://api.cognitive.microsoft.com\";\n  val path = \"/bing/v7.0/images/search\";\n  \n  val url = new URL(host + path + \"?offset=\" + ((page - 1) * 150) + \"&count=150&q=\" +  URLEncoder.encode(searchTerm, \"UTF-8\"))\n  val connection = url.openConnection()\n  connection.setRequestProperty(\"Ocp-Apim-Subscription-Key\", subscriptionKey)\n\n  import scala.collection.JavaConversions._\n\n  val stream = connection.getInputStream();\n  val response = new Scanner(stream).useDelimiter(\"\\\\A\").next()\n\n  val headers = connection.getHeaderFields();\n\n  stream.close();\n  val parser = new JsonParser();\n  val json = parser.parse(response).getAsJsonObject();\n  val total = Integer.parseInt(json.get(\"totalEstimatedMatches\").getAsString());\n  val pages = total / 150 - 1\n  val results = json.getAsJsonArray(\"value\");\n  \n  val next: Iterable[String] = {\n    if ( (page + 1) < pages ) {\n      println(\"Fetching page \" + (page + 1 ))\n      \n      getResults(searchTerm, page + 1)\n    } else {\n      println(\"Completed @ \" + page )\n      Seq()\n    }\n  }\n  \n  results.map(\n    _.asInstanceOf[JsonObject]\n  ).map(\n    _.get(\"thumbnailUrl\").getAsString()\n  ) ++ next\n}\n\n//getResults(\"asbestos\", 1)\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2019-02-10 21:30:09.442",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1549834191268_-372447709",
+      "id": "20190210-212951_962958015",
+      "dateCreated": "2019-02-10 21:29:51.268",
+      "dateStarted": "2019-02-10 21:30:09.458",
+      "dateFinished": "2019-02-10 21:30:09.800",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "results": {}
+    },
+    {
+      "text": "def download(url: String, category: String) {\n  println(url + \" \" + category)\n  //val url = \"https://tse1.mm.bing.net/th?id=OIP.eMnBWtXVNYWK-qerspawmAHaFc&pid=Api\"\n  //splitQuery(url)(\"id\")\n  \n  import sys.process._\n  import java.net.URL\n  import java.io.File\n  new URL(url) #> new File(\"/data/images/household/\" + category + \"/\" + splitQuery(url)(\"id\") + \".jpeg\") !!\n}\n\n//download(\"https://tse1.mm.bing.net/th?id=OIP.eMnBWtXVNYWK-qerspawmAHaFc&pid=Api\", \"test\")",
+      "user": "anonymous",
+      "dateUpdated": "2019-02-10 21:30:17.332",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1549834209442_1376137238",
+      "id": "20190210-213009_456664598",
+      "dateCreated": "2019-02-10 21:30:09.443",
+      "dateStarted": "2019-02-10 21:30:17.356",
+      "dateFinished": "2019-02-10 21:30:17.492",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "results": {}
+    },
+    {
+      "text": "val tagsWithNoRows = (new File(root)).listFiles.filter(_.isDirectory).map( (path) => ( (path + \"\").substring(\"/data/images/household/\".length), path.listFiles.size ) ).filter( _._2 == 0 ).map(_._1)\n\n// TODO - environment varialbes\n// TODO - status reporting\n// TODO - timeout?\n",
+      "user": "anonymous",
+      "dateUpdated": "2019-02-10 21:30:28.335",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1549834217332_1443120370",
+      "id": "20190210-213017_2009052894",
+      "dateCreated": "2019-02-10 21:30:17.332",
+      "dateStarted": "2019-02-10 21:30:28.356",
+      "dateFinished": "2019-02-10 21:30:28.638",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "results": {}
+    },
+    {
+      "text": "tagsWithNoRows.map(\n  (tag: String) => {\n      getResults(tag, 1).map(\n        (url) => download(url, tag)\n      )\n  }    \n)",
+      "user": "anonymous",
+      "dateUpdated": "2019-02-10 21:30:38.059",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1549834228335_2128192516",
+      "id": "20190210-213028_1857308703",
+      "dateCreated": "2019-02-10 21:30:28.335",
+      "dateStarted": "2019-02-10 21:30:38.079",
+      "dateFinished": "2019-02-10 21:30:38.244",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "results": {}
+    },
+    {
+      "text": "def getResults(searchTerm: String, page: Int): Iterable[String] = {\n  println(searchTerm, page)\n  \n  import java.net._\n  import java.util._\n  import java.io._\n  import javax.net.ssl.HttpsURLConnection\n  import com.google.gson.Gson\n  import com.google.gson.GsonBuilder\n  import com.google.gson.JsonObject\n  import com.google.gson.JsonParser\n\n  val subscriptionKey = \"90d32ad783f84d8ebef3d9914d958407\";\n  val host = \"https://api.cognitive.microsoft.com\";\n  val path = \"/bing/v7.0/images/search\";\n  \n  val url = new URL(host + path + \"?offset=\" + ((page - 1) * 150) + \"&count=150&q=\" +  URLEncoder.encode(searchTerm, \"UTF-8\"))\n  val connection = url.openConnection()\n  connection.setRequestProperty(\"Ocp-Apim-Subscription-Key\", subscriptionKey)\n\n  import scala.collection.JavaConversions._\n\n  val stream = connection.getInputStream();\n  val response = new Scanner(stream).useDelimiter(\"\\\\A\").next()\n\n  val headers = connection.getHeaderFields();\n\n  stream.close();\n  val parser = new JsonParser();\n  val json = parser.parse(response).getAsJsonObject();\n  val total = Integer.parseInt(json.get(\"totalEstimatedMatches\").getAsString());\n  val pages = total / 150 - 1\n  val results = json.getAsJsonArray(\"value\");\n  \n  val next: Iterable[String] = {\n    if ( (page + 1) < pages ) {\n      println(\"Fetching page \" + (page + 1 ))\n      \n      getResults(searchTerm, page + 1)\n    } else {\n      println(\"Completed @ \" + page )\n      Seq()\n    }\n  }\n  \n  results.map(\n    _.asInstanceOf[JsonObject]\n  ).map(\n    _.get(\"thumbnailUrl\").getAsString()\n  ) ++ next\n}\n\n//getResults(\"asbestos\", 1)\n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2019-02-10 21:30:57.984",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1549834238059_-945595840",
+      "id": "20190210-213038_900661921",
+      "dateCreated": "2019-02-10 21:30:38.059",
+      "dateStarted": "2019-02-10 21:30:58.007",
+      "dateFinished": "2019-02-10 21:30:58.199",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "results": {}
+    },
+    {
+      "text": "def download(url: String, category: String) {\n  println(url + \" \" + category)\n\n  \n  import sys.process._\n  import java.net.URL\n  import java.io.File\n  new URL(url) #> new File(\"/data/images/household/\" + category + \"/\" + splitQuery(url)(\"id\") + \".jpeg\") !!\n}\n\n//download(\"https://tse1.mm.bing.net/th?id=OIP.eMnBWtXVNYWK-qerspawmAHaFc&pid=Api\", \"test\")",
+      "user": "anonymous",
+      "dateUpdated": "2019-02-10 21:31:19.318",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1549834252356_902961881",
+      "id": "20190210-213052_773228173",
+      "dateCreated": "2019-02-10 21:30:52.356",
+      "dateStarted": "2019-02-10 21:31:19.339",
+      "dateFinished": "2019-02-10 21:31:19.453",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "results": {}
+    },
+    {
+      "text": "val tagsWithNoRows = (new File(root)).listFiles.filter(_.isDirectory).map( (path) => ( (path + \"\").substring(\"/data/images/household/\".length), path.listFiles.size ) ).filter( _._2 == 0 ).map(_._1)\n\n// TODO - environment varialbes\n// TODO - status reporting\n// TODO - timeout?\n",
+      "user": "anonymous",
+      "dateUpdated": "2019-02-10 21:31:29.496",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1549834279318_1807687325",
+      "id": "20190210-213119_1242144686",
+      "dateCreated": "2019-02-10 21:31:19.318",
+      "dateStarted": "2019-02-10 21:31:29.516",
+      "dateFinished": "2019-02-10 21:31:29.770",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "results": {}
+    },
+    {
+      "text": "print(\"%html \")\n  \nval root = \"/data/images/household/\"\n\ndef showImage(file: File) = {\n  import java.io._\n  import java.util._\n  val fis = new FileInputStream(file)\n \n  val data = Array.fill[Byte](file.length.toInt)(0)\n  fis.read(data)\n  fis.close\n \n  val encoded_string = Base64.getEncoder.encodeToString(data)\n  print(\"<img src='data:image/jpeg;base64,\" + encoded_string + \"' style='float:left;padding:5px;max-height:100px' />\")\n\n  //Base64.getEncoder.encodeToString(\"user:pass\".getBytes(StandardCharsets.UTF_8))\n}\n\n\ndef showImages(tag: String) = {\n  import scala.collection.JavaConversions._\n  import java.util.Base64\n  import java.nio.charset.StandardCharsets\n\n  println(\"<h4>\" + tag + \"</h4>\")\n\n  val files = (new File(root + tag)).listFiles\n  files.take(50).map(showImage)\n}\n\ndef showRandomClass = {\n  import scala.collection.JavaConversions._\n\n  val rootFolders = (new File(root)).listFiles.filter(_.isDirectory).map(_.toString).toList\n  val tags = scala.util.Random.shuffle(rootFolders)\n  val tag = tags(0)\n  showImages(tag)\n}\n\nprint(showImages(\"smoke detector\"))",
+      "user": "anonymous",
+      "dateUpdated": "2019-02-10 21:31:50.516",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1549834307979_-1902161718",
+      "id": "20190210-213147_591046617",
+      "dateCreated": "2019-02-10 21:31:47.979",
+      "dateStarted": "2019-02-10 21:31:50.533",
+      "dateFinished": "2019-02-10 21:31:51.115",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "results": {}
+    },
+    {
+      "text": "%python\nprint(1)\n# options: add a http server\n#          base 64\n#          figure out how to load a local file\n#          figure out progress reporting for a job\n#          figure out how to split the pulling of tags up into spark jobs\n#          can I play a video?\n#          can I play a video with markings?\n#          can I build an app - or is that more for android studio\n#val lines = scala.io.Source.fromFile(\"/data/images/household/poplar/OIP.hgi_ynz9SPPJQM_TiyzVYAHaHa.jpeg\").mkString\nimport base64\nimport os, random\n\nprint(\"%html \")\n\nroot = \"/data/images/household/\"\ntags = os.listdir(root)\nrandom.shuffle(tags)\n\ntag = tags[0]\n\npath = root + tag + \"/\";\nfiles = os.listdir(path)\nrandom.shuffle(files)\nfiltered = files[0:min(len(files), 50)]\n\nprint(\"<h4>\" + tag + \"</h4>\")\n\ndef showImage(file):\n  with open(path + file, \"rb\") as image_file:\n    encoded_string = base64.b64encode(image_file.read())\n    print(\"<img src='data:image/jpeg;base64,\" + encoded_string + \"' style='float:left;padding:5px;max-height:100px' />\")\n    \n[showImage(file) for file in filtered]\n\n\"\"",
+      "user": "anonymous",
+      "dateUpdated": "2019-02-10 21:32:33.230",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1549834289496_586515269",
+      "id": "20190210-213129_1453843815",
+      "dateCreated": "2019-02-10 21:31:29.497",
+      "dateStarted": "2019-02-10 21:32:33.254",
+      "dateFinished": "2019-02-10 21:32:33.287",
+      "status": "ERROR",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "results": {}
+    },
+    {
+      "text": "%spark\nprintln(z.select((new File(root)).listFiles.filter(_.isDirectory).map( (path) => ( \"a\"+ (path + \"\").substring(\"/data/images/household/\".length), path.listFiles.size ) ).filter( _._2 > 0 ).map(_._1).zipWithIndex.map((a) => (\"a\",\"b\"))))\n",
+      "user": "anonymous",
+      "dateUpdated": "2019-02-10 21:32:24.917",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1549834322038_-97751579",
+      "id": "20190210-213202_1510144394",
+      "dateCreated": "2019-02-10 21:32:02.038",
+      "dateStarted": "2019-02-10 21:32:24.947",
+      "dateFinished": "2019-02-10 21:32:25.180",
+      "status": "ERROR",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "results": {}
+    },
+    {
+      "text": "print (\"%html \")\n\nval value = z.select(\"tag\",\n       (new File(root))\n           .listFiles\n           .filter(_.isDirectory)\n           .filter(\n               _.listFiles.size > 0\n           )\n           .map(\n               _.toString.substring(\"/data/images/household/\".length)\n           )\n           .map( \n               path => (path, path)\n           ).seqm\n           \n\nshowImages(value.toString)",
+      "user": "anonymous",
+      "dateUpdated": "2019-02-10 21:32:41.398",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1549834344917_-1503271918",
+      "id": "20190210-213224_738655629",
+      "dateCreated": "2019-02-10 21:32:24.917",
+      "dateStarted": "2019-02-10 21:32:41.420",
+      "dateFinished": "2019-02-10 21:32:41.429",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "results": {}
+    },
+    {
+      "text": "%pyspark\n# TODO - bash\n# TODO - does matplotlib work?\n\nimport matplotlib\nimport io\n\n# If you use the use() function, this must be done before importing matplotlib.pyplot. Calling use() after pyplot has been imported will have no effect.\n# see: http://matplotlib.org/faq/usage_faq.html#what-is-a-backend\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\n\ndef show(p):\n    img = io.StringIO()\n    p.savefig(img, format='svg')\n    img.seek(0)\n    print(\"%html <div style='width:600px'>\" + img.getvalue() + \"</div>\")\n\nplt.plot([1,2,3,4])\nplt.ylabel('some numbers')\nshow(plt)\n",
+      "user": "anonymous",
+      "dateUpdated": "2019-02-13 21:21:04.739",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {},
+      "apps": [],
+      "jobName": "paragraph_1549834361398_-2109551671",
+      "id": "20190210-213241_1006803748",
+      "dateCreated": "2019-02-10 21:32:41.398",
+      "dateStarted": "2019-02-13 21:21:04.954",
+      "dateFinished": "2019-02-13 21:21:27.209",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# TODO - bash\n# TODO - does matplotlib work?\n\nimport matplotlib\nimport io\n\n# If you use the use() function, this must be done before importing matplotlib.pyplot. Calling use() after pyplot has been imported will have no effect.\n# see: http://matplotlib.org/faq/usage_faq.html#what-is-a-backend\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\n\ndef show(p):\n    img = io.StringIO()\n    p.savefig(img, format='svg')\n    img.seek(0)\n    print(\"%html <div style='width:600px'>\" + img.getvalue() + \"</div>\")\n\nplt.plot([1,2,3,4])\nplt.ylabel('some numbers')\nshow(plt)\n",
+      "user": "anonymous",
+      "dateUpdated": "2019-02-10 21:32:58.038",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1549834367697_-1491678675",
+      "id": "20190210-213247_900183971",
+      "dateCreated": "2019-02-10 21:32:47.697",
+      "dateStarted": "2019-02-10 21:32:58.061",
+      "dateFinished": "2019-02-10 21:32:58.127",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "results": {}
+    },
+    {
+      "text": "print(\"%html \")\n  \nval root = \"/projects/household/label_preparation/\"\n\ndef showImage(file: File) = {\n  import java.io._\n  import java.util._\n  val fis = new FileInputStream(file)\n \n  val data = Array.fill[Byte](file.length.toInt)(0)\n  fis.read(data)\n  fis.close\n \n  val encoded_string = Base64.getEncoder.encodeToString(data)\n  print(\"<img src='data:image/jpeg;base64,\" + encoded_string + \"' style='float:left;padding:5px;max-height:100px' />\")\n\n  //Base64.getEncoder.encodeToString(\"user:pass\".getBytes(StandardCharsets.UTF_8))\n}\n\n\ndef showImages(tag: String) = {\n  import scala.collection.JavaConversions._\n  import java.util.Base64\n  import java.nio.charset.StandardCharsets\n\n  println(\"<h4>\" + tag + \"</h4>\")\n\n  val files = (new File(root + \"images\")).listFiles\n  files.take(50).map(showImage)\n}\n\ndef showRandomClass = {\n  import scala.collection.JavaConversions._\n\n  val rootFolders = (new File(root)).listFiles.filter(_.isDirectory).map(_.toString).toList\n  val tags = scala.util.Random.shuffle(rootFolders)\n  val tag = tags(0)\n  showImages(tag)\n}\n\n\nprint(showImages(\"pedestal_sump_pump\"))",
+      "user": "anonymous",
+      "dateUpdated": "2019-02-10 21:33:08.391",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1549834378038_-1417686027",
+      "id": "20190210-213258_443143378",
+      "dateCreated": "2019-02-10 21:32:58.038",
+      "dateStarted": "2019-02-10 21:33:08.413",
+      "dateFinished": "2019-02-10 21:33:08.823",
+      "status": "ERROR",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "results": {}
+    },
+    {
+      "text": "def bounding(pt1: Point, pt2: Point) = {\n//  import org.bytedeco.javacpp.opencv_imgcodecs.imread\n//  import org.bytedeco.javacpp.opencv_core.Scalar\n//  import org.bytedeco.javacpp.opencv_core.Mat\n//  import org.bytedeco.javacpp.opencv_imgproc.\n\n  val image = imread(\"/home/gary/Downloads/IMG_20190112_180203.jpg\")\n  val white = new Scalar(255, 255, 255, 0)\n  val black = new Scalar(0, 0, 0, 0)\n  rectangle(image, pt1, pt2, black, 20, LINE_8, 0)\n  rectangle(image, pt1, pt2, white, 3, LINE_8, 0)\n\n  imwrite(\"/home/gary/Downloads/IMG_20190112_180203B.jpg\", image)\n}\n\nbounding(new Point(10, 10), new Point(400, 100))",
+      "user": "anonymous",
+      "dateUpdated": "2019-02-10 21:33:20.001",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1549834388391_-555960584",
+      "id": "20190210-213308_1809200851",
+      "dateCreated": "2019-02-10 21:33:08.391",
+      "dateStarted": "2019-02-10 21:33:20.024",
+      "dateFinished": "2019-02-10 21:33:20.050",
+      "status": "ERROR",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "results": {}
+    },
+    {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "2019-02-13 20:13:29.758",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1549834400001_1002171214",
+      "id": "20190210-213320_792122016",
+      "dateCreated": "2019-02-10 21:33:20.001",
+      "dateStarted": "2019-02-10 21:33:42.698",
+      "dateFinished": "2019-02-10 21:33:42.726",
+      "status": "ERROR",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "results": {}
+    },
+    {
+      "user": "anonymous",
+      "config": {
+        "results": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1549834422671_-615279537",
+      "id": "20190210-213342_1784991975",
+      "dateCreated": "2019-02-10 21:33:42.671",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "results": {}
+    }
+  ],
+  "name": "Image Collection",
+  "id": "2E3J7UQ4F",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "python:shared_process": [],
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

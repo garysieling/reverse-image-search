@@ -1,0 +1,202 @@
+{
+  "paragraphs": [
+    {
+      "text": "%python\n\nprint(\"%html \u003ciframe width\u003d\\\"560\\\" height\u003d\\\"315\\\" src\u003d\\\"https://www.youtube.com/embed/YJ4d-nOf7cI\\\" frameborder\u003d\\\"0\\\" allow\u003d\\\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\\\" allowfullscreen\u003e\u003c/iframe\u003e\")",
+      "user": "anonymous",
+      "dateUpdated": "2019-05-11 17:41:30.603",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python",
+        "editorHide": false,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ciframe width\u003d\"560\" height\u003d\"315\" src\u003d\"https://www.youtube.com/embed/YJ4d-nOf7cI\" frameborder\u003d\"0\" allow\u003d\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen\u003e\u003c/iframe\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1557596091749_1807103934",
+      "id": "20190511-173451_266082222",
+      "dateCreated": "2019-05-11 17:34:51.749",
+      "dateStarted": "2019-05-11 17:41:30.674",
+      "dateFinished": "2019-05-11 17:41:35.376",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\n\nyoutube-dl -F  \"https://www.youtube.com/watch?v\u003dYJ4d-nOf7cI\"",
+      "user": "anonymous",
+      "dateUpdated": "2019-05-11 17:45:02.631",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "[youtube] YJ4d-nOf7cI: Downloading webpage\n[youtube] YJ4d-nOf7cI: Downloading video info webpage\n[youtube] YJ4d-nOf7cI: Downloading MPD manifest\n[info] Available formats for YJ4d-nOf7cI:\nformat code  extension  resolution note\n139          m4a        audio only DASH audio   49k , m4a_dash container, mp4a.40.5@ 48k (22050Hz)\n140          m4a        audio only DASH audio   98k , m4a_dash container, mp4a.40.2@128k (44100Hz)\n278          webm       82x144     DASH video   95k , webm_dash container, vp9, 30fps, video only\n160          mp4        82x144     DASH video  108k , mp4_dash container, avc1.4d400b, 30fps, video only\n134          mp4        202x360    DASH video  184k , mp4_dash container, avc1.4d400d, 30fps, video only\n242          webm       136x240    DASH video  220k , webm_dash container, vp9, 30fps, video only\n133          mp4        136x240    DASH video  242k , mp4_dash container, avc1.4d400c, 30fps, video only\n243          webm       202x360    DASH video  405k , webm_dash container, vp9, 30fps, video only\n244          webm       270x480    DASH video  752k , webm_dash container, vp9, 30fps, video only\n135          mp4        270x480    DASH video 1155k , mp4_dash container, avc1.4d4014, 30fps, video only\n137          mp4        608x1080   DASH video 1451k , mp4_dash container, avc1.64001f, 30fps, video only\n247          webm       406x720    DASH video 1505k , webm_dash container, vp9, 30fps, video only\n136          mp4        406x720    DASH video 2310k , mp4_dash container, avc1.4d4016, 30fps, video only\n248          webm       608x1080   DASH video 2646k , webm_dash container, vp9, 30fps, video only\n18           mp4        202x360    small , avc1.42001E, mp4a.40.2@ 96k, 337.37KiB\n22           mp4        406x720    medium , avc1.64001F, mp4a.40.2@192k\n43           webm       640x360    medium , vp8.0, vorbis@128k, 299.98KiB (best)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1557596693846_-1726658262",
+      "id": "20190511-174453_648959556",
+      "dateCreated": "2019-05-11 17:44:53.846",
+      "dateStarted": "2019-05-11 17:45:02.683",
+      "dateFinished": "2019-05-11 17:45:05.837",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\n\nyoutube-dl -f 135 -o \"/data/video.mp4\" \"https://www.youtube.com/watch?v\u003dYJ4d-nOf7cI\"",
+      "user": "anonymous",
+      "dateUpdated": "2019-05-11 17:45:51.771",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "[youtube] YJ4d-nOf7cI: Downloading webpage\n[youtube] YJ4d-nOf7cI: Downloading video info webpage\n[youtube] YJ4d-nOf7cI: Downloading MPD manifest\n[dashsegments] Total fragments: 2\n[download] Destination: /data/video.mp4\n\r[download]  50.0% of ~1.66KiB at 199.10KiB/s ETA 00:01\r[download]  50.0% of ~1.66KiB at 199.10KiB/s ETA 00:01\r[download]   0.9% of ~209.39KiB at 503.52KiB/s ETA 06:04\r[download]   1.8% of ~209.39KiB at  1.32MiB/s ETA 02:52\r[download]   3.7% of ~209.39KiB at  1.98MiB/s ETA 01:22\r[download]   7.6% of ~209.39KiB at 155.28KiB/s ETA 00:40\r[download]  15.2% of ~209.39KiB at 240.19KiB/s ETA 00:18\r[download]  30.5% of ~209.39KiB at 395.37KiB/s ETA 00:07\r[download]  61.1% of ~209.39KiB at 510.64KiB/s ETA 00:02\r[download] 100.0% of ~209.39KiB at 693.93KiB/s ETA 00:00\r[download] 100.0% of ~209.39KiB at 693.93KiB/s ETA 00:00\r[download] 100% of 209.39KiB in 00:03\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1557596235326_1641246691",
+      "id": "20190511-173715_846909079",
+      "dateCreated": "2019-05-11 17:37:15.326",
+      "dateStarted": "2019-05-11 17:45:51.811",
+      "dateFinished": "2019-05-11 17:45:58.456",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\nffmpeg -i /data/video.mp4 /data/images/thumb%04d.jpg -hide_banner\n",
+      "user": "anonymous",
+      "dateUpdated": "2019-05-11 17:46:44.704",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Input #0, mov,mp4,m4a,3gp,3g2,mj2, from \u0027/data/video.mp4\u0027:\n  Metadata:\n    major_brand     : dash\n    minor_version   : 0\n    compatible_brands: iso6avc1mp41\n    creation_time   : 2019-05-11 17:37:14\n  Duration: 00:00:04.83, start: 0.000000, bitrate: 354 kb/s\n    Stream #0:0(und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p, 270x480 [SAR 1:1 DAR 9:16], 350 kb/s, 29.80 fps, 29.83 tbr, 90k tbn, 59.60 tbc (default)\n    Metadata:\n      creation_time   : 2019-05-11 17:37:14\n      handler_name    : ISO Media file produced by Google Inc. Created on: 05/11/2019.\n[swscaler @ 0x6929c0] deprecated pixel format used, make sure you did set range correctly\nOutput #0, image2, to \u0027/data/images/thumb%04d.jpg\u0027:\n  Metadata:\n    major_brand     : dash\n    minor_version   : 0\n    compatible_brands: iso6avc1mp41\n    encoder         : Lavf56.40.101\n    Stream #0:0(und): Video: mjpeg, yuvj420p(pc), 270x480 [SAR 1:1 DAR 9:16], q\u003d2-31, 200 kb/s, 29.83 fps, 29.83 tbn, 29.83 tbc (default)\n    Metadata:\n      creation_time   : 2019-05-11 17:37:14\n      handler_name    : ISO Media file produced by Google Inc. Created on: 05/11/2019.\n      encoder         : Lavc56.60.100 mjpeg\nStream mapping:\n  Stream #0:0 -\u003e #0:0 (h264 (native) -\u003e mjpeg (native))\nPress [q] to stop, [?] for help\nframe\u003d  124 fps\u003d0.0 q\u003d24.8 size\u003dN/A time\u003d00:00:04.15 bitrate\u003dN/A    \rframe\u003d  144 fps\u003d0.0 q\u003d24.8 Lsize\u003dN/A time\u003d00:00:04.82 bitrate\u003dN/A    \nvideo:955kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1557596132622_-1225904603",
+      "id": "20190511-173532_141862231",
+      "dateCreated": "2019-05-11 17:35:32.622",
+      "dateStarted": "2019-05-11 17:46:44.748",
+      "dateFinished": "2019-05-11 17:46:45.402",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "2019-05-11 17:47:04.534",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1557596653796_979126680",
+      "id": "20190511-174413_1204063644",
+      "dateCreated": "2019-05-11 17:44:13.796",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Demo",
+  "id": "2ED2VTNRX",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "python:shared_process": [],
+    "sh:shared_process": [],
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
