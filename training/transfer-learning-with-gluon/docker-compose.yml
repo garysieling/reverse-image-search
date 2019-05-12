@@ -2,3 +2,5 @@ learning:
   image: transfer-learning-with-gluon
   ports:
     - 8888:8888
+  volumes:
+    - ./data:/data

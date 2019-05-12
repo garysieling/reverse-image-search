@@ -81,9 +81,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%sh\n\nyoutube-dl -f 135 -o \"/data/video.mp4\" \"https://www.youtube.com/watch?v\u003dYJ4d-nOf7cI\"",
+      "text": "%sh\n\nyoutube-dl -f 135 -o \"/data/sump_pump.mp4\" \"https://www.youtube.com/watch?v\u003dYJ4d-nOf7cI\"\nyoutube-dl -f 135 -o \"/data/breaker_box.mp4\" \"https://www.youtube.com/watch?v\u003deYzj9hty1Q4\"\nyoutube-dl -f 135 -o \"/data/washer.mp4\" \"https://www.youtube.com/watch?v\u003d0_1xQLGeGl8\"\n",
       "user": "anonymous",
-      "dateUpdated": "2019-05-11 17:45:51.771",
+      "dateUpdated": "2019-05-12 17:13:21.969",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -106,7 +106,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "[youtube] YJ4d-nOf7cI: Downloading webpage\n[youtube] YJ4d-nOf7cI: Downloading video info webpage\n[youtube] YJ4d-nOf7cI: Downloading MPD manifest\n[dashsegments] Total fragments: 2\n[download] Destination: /data/video.mp4\n\r[download]  50.0% of ~1.66KiB at 199.10KiB/s ETA 00:01\r[download]  50.0% of ~1.66KiB at 199.10KiB/s ETA 00:01\r[download]   0.9% of ~209.39KiB at 503.52KiB/s ETA 06:04\r[download]   1.8% of ~209.39KiB at  1.32MiB/s ETA 02:52\r[download]   3.7% of ~209.39KiB at  1.98MiB/s ETA 01:22\r[download]   7.6% of ~209.39KiB at 155.28KiB/s ETA 00:40\r[download]  15.2% of ~209.39KiB at 240.19KiB/s ETA 00:18\r[download]  30.5% of ~209.39KiB at 395.37KiB/s ETA 00:07\r[download]  61.1% of ~209.39KiB at 510.64KiB/s ETA 00:02\r[download] 100.0% of ~209.39KiB at 693.93KiB/s ETA 00:00\r[download] 100.0% of ~209.39KiB at 693.93KiB/s ETA 00:00\r[download] 100% of 209.39KiB in 00:03\n"
+            "data": "[youtube] YJ4d-nOf7cI: Downloading webpage\n[youtube] YJ4d-nOf7cI: Downloading video info webpage\n[youtube] YJ4d-nOf7cI: Downloading MPD manifest\n[download] /data/sump_pump.mp4 has already been downloaded\n\r[download] 100% of 209.39KiB\n[youtube] eYzj9hty1Q4: Downloading webpage\n[youtube] eYzj9hty1Q4: Downloading video info webpage\n[youtube] eYzj9hty1Q4: Downloading MPD manifest\n[dashsegments] Total fragments: 2\n[download] Destination: /data/breaker_box.mp4\n\r[download]  50.0% of ~1.66KiB at 225.16KiB/s ETA 00:02\r[download]  50.0% of ~1.66KiB at 225.16KiB/s ETA 00:02\r[download]   1.4% of ~128.01KiB at 330.49KiB/s ETA 03:31\r[download]   3.0% of ~128.01KiB at 934.98KiB/s ETA 01:39\r[download]   6.1% of ~128.01KiB at  1.83MiB/s ETA 00:47\r[download]  12.4% of ~128.01KiB at 421.35KiB/s ETA 00:21\r[download]  24.9% of ~128.01KiB at 714.81KiB/s ETA 00:09\r[download]  49.9% of ~128.01KiB at 858.82KiB/s ETA 00:03\r[download]  99.9% of ~128.01KiB at  1.15MiB/s ETA 00:00\r[download] 100.0% of ~128.01KiB at  1.15MiB/s ETA 00:00\r[download] 100.0% of ~128.01KiB at  1.15MiB/s ETA 00:00\r[download] 100% of 128.01KiB in 00:03\n[youtube] 0_1xQLGeGl8: Downloading webpage\n[youtube] 0_1xQLGeGl8: Downloading video info webpage\n[youtube] 0_1xQLGeGl8: Downloading MPD manifest\n[dashsegments] Total fragments: 2\n[download] Destination: /data/washer.mp4\n\r[download]  50.0% of ~1.66KiB at 261.91KiB/s ETA 00:00\r[download]  50.0% of ~1.66KiB at 261.91KiB/s ETA 00:00\r[download]   0.8% of ~225.87KiB at 77.49KiB/s ETA 02:20\r[download]   1.7% of ~225.87KiB at 228.24KiB/s ETA 01:06\r[download]   3.5% of ~225.87KiB at 509.34KiB/s ETA 00:32\r[download]   7.0% of ~225.87KiB at 1021.27KiB/s ETA 00:15\r[download]  14.1% of ~225.87KiB at 743.23KiB/s ETA 00:07\r[download]  28.3% of ~225.87KiB at 976.29KiB/s ETA 00:03\r[download]  56.6% of ~225.87KiB at  1.33MiB/s ETA 00:00\r[download] 100.0% of ~225.87KiB at  1.84MiB/s ETA 00:00\r[download] 100.0% of ~225.87KiB at  1.84MiB/s ETA 00:00\r[download] 100% of 225.87KiB in 00:01\n"
           }
         ]
       },
@@ -114,15 +114,15 @@
       "jobName": "paragraph_1557596235326_1641246691",
       "id": "20190511-173715_846909079",
       "dateCreated": "2019-05-11 17:37:15.326",
-      "dateStarted": "2019-05-11 17:45:51.811",
-      "dateFinished": "2019-05-11 17:45:58.456",
+      "dateStarted": "2019-05-12 17:13:22.025",
+      "dateFinished": "2019-05-12 17:13:32.740",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%sh\nffmpeg -i /data/video.mp4 /data/images/thumb%04d.jpg -hide_banner\n",
+      "text": "%sh\nffmpeg -i /data/sump_pump.mp4 /data/household/sump_pump/YJ4d-nOf7cI-%04d.jpg -hide_banner\nffmpeg -i /data/breaker_box.mp4 /data/household/breaker_box/eYzj9hty1Q4-%04d.jpg -hide_banner\nffmpeg -i /data/washer.mp4 /data/household/washer/0_1xQLGeGl8-%04d.jpg -hide_banner\n",
       "user": "anonymous",
-      "dateUpdated": "2019-05-11 18:19:28.730",
+      "dateUpdated": "2019-05-12 17:13:54.903",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -144,7 +144,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "Input #0, mov,mp4,m4a,3gp,3g2,mj2, from \u0027/data/video.mp4\u0027:\n  Metadata:\n    major_brand     : dash\n    minor_version   : 0\n    compatible_brands: iso6avc1mp41\n    creation_time   : 2019-05-11 17:37:14\n  Duration: 00:00:04.83, start: 0.000000, bitrate: 354 kb/s\n    Stream #0:0(und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p, 270x480 [SAR 1:1 DAR 9:16], 350 kb/s, 29.80 fps, 29.83 tbr, 90k tbn, 59.60 tbc (default)\n    Metadata:\n      creation_time   : 2019-05-11 17:37:14\n      handler_name    : ISO Media file produced by Google Inc. Created on: 05/11/2019.\n[swscaler @ 0x1c999c0] deprecated pixel format used, make sure you did set range correctly\nOutput #0, image2, to \u0027/data/images/thumb%04d.jpg\u0027:\n  Metadata:\n    major_brand     : dash\n    minor_version   : 0\n    compatible_brands: iso6avc1mp41\n    encoder         : Lavf56.40.101\n    Stream #0:0(und): Video: mjpeg, yuvj420p(pc), 270x480 [SAR 1:1 DAR 9:16], q\u003d2-31, 200 kb/s, 29.83 fps, 29.83 tbn, 29.83 tbc (default)\n    Metadata:\n      creation_time   : 2019-05-11 17:37:14\n      handler_name    : ISO Media file produced by Google Inc. Created on: 05/11/2019.\n      encoder         : Lavc56.60.100 mjpeg\nStream mapping:\n  Stream #0:0 -\u003e #0:0 (h264 (native) -\u003e mjpeg (native))\nPress [q] to stop, [?] for help\nframe\u003d   76 fps\u003d0.0 q\u003d24.8 size\u003dN/A time\u003d00:00:02.54 bitrate\u003dN/A    \rframe\u003d  136 fps\u003d134 q\u003d24.8 size\u003dN/A time\u003d00:00:04.55 bitrate\u003dN/A    \rframe\u003d  144 fps\u003d132 q\u003d24.8 Lsize\u003dN/A time\u003d00:00:04.82 bitrate\u003dN/A    \nvideo:955kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown\n"
+            "data": "Input #0, mov,mp4,m4a,3gp,3g2,mj2, from \u0027/data/sump_pump.mp4\u0027:\n  Metadata:\n    major_brand     : dash\n    minor_version   : 0\n    compatible_brands: iso6avc1mp41\n    creation_time   : 2019-05-11 17:37:14\n  Duration: 00:00:04.83, start: 0.000000, bitrate: 354 kb/s\n    Stream #0:0(und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p, 270x480 [SAR 1:1 DAR 9:16], 350 kb/s, 29.80 fps, 29.83 tbr, 90k tbn, 59.60 tbc (default)\n    Metadata:\n      creation_time   : 2019-05-11 17:37:14\n      handler_name    : ISO Media file produced by Google Inc. Created on: 05/11/2019.\n[swscaler @ 0xf57a20] deprecated pixel format used, make sure you did set range correctly\nOutput #0, image2, to \u0027/data/household/sump_pump/YJ4d-nOf7cI-%04d.jpg\u0027:\n  Metadata:\n    major_brand     : dash\n    minor_version   : 0\n    compatible_brands: iso6avc1mp41\n    encoder         : Lavf56.40.101\n    Stream #0:0(und): Video: mjpeg, yuvj420p(pc), 270x480 [SAR 1:1 DAR 9:16], q\u003d2-31, 200 kb/s, 29.83 fps, 29.83 tbn, 29.83 tbc (default)\n    Metadata:\n      creation_time   : 2019-05-11 17:37:14\n      handler_name    : ISO Media file produced by Google Inc. Created on: 05/11/2019.\n      encoder         : Lavc56.60.100 mjpeg\nStream mapping:\n  Stream #0:0 -\u003e #0:0 (h264 (native) -\u003e mjpeg (native))\nPress [q] to stop, [?] for help\nframe\u003d  115 fps\u003d0.0 q\u003d24.8 size\u003dN/A time\u003d00:00:03.85 bitrate\u003dN/A    \rframe\u003d  144 fps\u003d0.0 q\u003d24.8 Lsize\u003dN/A time\u003d00:00:04.82 bitrate\u003dN/A    \nvideo:955kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown\nInput #0, mov,mp4,m4a,3gp,3g2,mj2, from \u0027/data/breaker_box.mp4\u0027:\n  Metadata:\n    major_brand     : dash\n    minor_version   : 0\n    compatible_brands: iso6avc1mp41\n    creation_time   : 2019-05-12 17:13:28\n  Duration: 00:00:02.60, start: 0.000000, bitrate: 403 kb/s\n    Stream #0:0(und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p, 270x480 [SAR 1:1 DAR 9:16], 398 kb/s, 30 fps, 30 tbr, 90k tbn, 60 tbc (default)\n    Metadata:\n      creation_time   : 2019-05-12 17:13:28\n      handler_name    : ISO Media file produced by Google Inc. Created on: 05/12/2019.\n[swscaler @ 0x24d5a20] deprecated pixel format used, make sure you did set range correctly\nOutput #0, image2, to \u0027/data/household/breaker_box/eYzj9hty1Q4-%04d.jpg\u0027:\n  Metadata:\n    major_brand     : dash\n    minor_version   : 0\n    compatible_brands: iso6avc1mp41\n    encoder         : Lavf56.40.101\n    Stream #0:0(und): Video: mjpeg, yuvj420p(pc), 270x480 [SAR 1:1 DAR 9:16], q\u003d2-31, 200 kb/s, 30 fps, 30 tbn, 30 tbc (default)\n    Metadata:\n      creation_time   : 2019-05-12 17:13:28\n      handler_name    : ISO Media file produced by Google Inc. Created on: 05/12/2019.\n      encoder         : Lavc56.60.100 mjpeg\nStream mapping:\n  Stream #0:0 -\u003e #0:0 (h264 (native) -\u003e mjpeg (native))\nPress [q] to stop, [?] for help\nframe\u003d   78 fps\u003d0.0 q\u003d24.8 Lsize\u003dN/A time\u003d00:00:02.60 bitrate\u003dN/A    \nvideo:491kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown\nInput #0, mov,mp4,m4a,3gp,3g2,mj2, from \u0027/data/washer.mp4\u0027:\n  Metadata:\n    major_brand     : dash\n    minor_version   : 0\n    compatible_brands: iso6avc1mp41\n    creation_time   : 2019-05-12 17:12:33\n  Duration: 00:00:05.37, start: 0.000000, bitrate: 344 kb/s\n    Stream #0:0(und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p, 270x480 [SAR 1:1 DAR 9:16], 341 kb/s, 30 fps, 30 tbr, 90k tbn, 60 tbc (default)\n    Metadata:\n      creation_time   : 2019-05-12 17:12:33\n      handler_name    : ISO Media file produced by Google Inc. Created on: 05/12/2019.\n[swscaler @ 0x25a2a20] deprecated pixel format used, make sure you did set range correctly\nOutput #0, image2, to \u0027/data/household/washer/0_1xQLGeGl8-%04d.jpg\u0027:\n  Metadata:\n    major_brand     : dash\n    minor_version   : 0\n    compatible_brands: iso6avc1mp41\n    encoder         : Lavf56.40.101\n    Stream #0:0(und): Video: mjpeg, yuvj420p(pc), 270x480 [SAR 1:1 DAR 9:16], q\u003d2-31, 200 kb/s, 30 fps, 30 tbn, 30 tbc (default)\n    Metadata:\n      creation_time   : 2019-05-12 17:12:33\n      handler_name    : ISO Media file produced by Google Inc. Created on: 05/12/2019.\n      encoder         : Lavc56.60.100 mjpeg\nStream mapping:\n  Stream #0:0 -\u003e #0:0 (h264 (native) -\u003e mjpeg (native))\nPress [q] to stop, [?] for help\nframe\u003d  106 fps\u003d0.0 q\u003d24.8 size\u003dN/A time\u003d00:00:03.53 bitrate\u003dN/A    \rframe\u003d  161 fps\u003d0.0 q\u003d24.8 Lsize\u003dN/A time\u003d00:00:05.36 bitrate\u003dN/A    \nvideo:741kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown\n"
           }
         ]
       },
@@ -152,8 +152,8 @@
       "jobName": "paragraph_1557596132622_-1225904603",
       "id": "20190511-173532_141862231",
       "dateCreated": "2019-05-11 17:35:32.622",
-      "dateStarted": "2019-05-11 18:19:28.808",
-      "dateFinished": "2019-05-11 18:19:30.539",
+      "dateStarted": "2019-05-12 17:13:54.949",
+      "dateFinished": "2019-05-12 17:13:57.021",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
