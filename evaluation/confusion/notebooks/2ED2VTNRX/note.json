@@ -197,16 +197,552 @@
       "progressUpdateIntervalMs": 500
     },
     {
+      "text": "%python\n\nimport os\n\ncategory_map \u003d {\n    \u0027breaker_box\u0027: [],\n    \u0027sump_pump\u0027: [],\n    \u0027washer\u0027: []\n}\n\ncategory_to_idx \u003d {\n    \u0027breaker_box\u0027: 0,\n    \u0027sump_pump\u0027: 1,\n    \u0027washer\u0027: 2\n}\n\ndata_dir \u003d \u0027/data/household/\u0027\nfnames \u003d os.listdir(data_dir)\ncounter \u003d 0\nfor category in fnames:\n    category_map[category].append({\n        \u0027idx\u0027: counter,\n        \u0027label\u0027: category_to_idx[category],\n        \u0027filename\u0027: fn,\n    })\n    counter +\u003d 1\n    \nfor k in category_map:\n    print(k, len(category_map[k]))",
       "user": "anonymous",
+      "dateUpdated": "2019-05-13 01:09:07.235",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "breaker_box 1\nwasher 1\nsump_pump 1\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1557598631982_-1912712365",
+      "id": "20190511-181711_1410267847",
+      "dateCreated": "2019-05-11 18:17:11.982",
+      "dateStarted": "2019-05-13 01:09:07.344",
+      "dateFinished": "2019-05-13 01:09:07.393",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%python\nimport random\nrandom.shuffle(category_map[\u0027breaker_box\u0027])\nrandom.shuffle(category_map[\u0027sump_pump\u0027])\nrandom.shuffle(category_map[\u0027washer\u0027])",
+      "user": "anonymous",
+      "dateUpdated": "2019-05-13 01:09:31.504",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1557709676210_-1776836279",
+      "id": "20190513-010756_1446448544",
+      "dateCreated": "2019-05-13 01:07:56.214",
+      "dateStarted": "2019-05-13 01:09:31.599",
+      "dateFinished": "2019-05-13 01:09:31.631",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%python\ndef write_lst(image_arr, base_dir, file_path):\n    with open(file_path, \u0027w\u0027) as f:\n        count \u003d 0\n        for img in image_arr:\n            label \u003d img[\u0027label\u0027]\n            img_path \u003d os.path.join(base_dir, img[\u0027filename\u0027])\n            new_line \u003d \u0027\\t\u0027.join([str(count), str(label), str(img_path)])\n            new_line +\u003d \u0027\\n\u0027\n            f.write(new_line)\n            count +\u003d 1",
+      "user": "anonymous",
+      "dateUpdated": "2019-05-13 01:09:46.620",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1557709762746_1154710085",
+      "id": "20190513-010922_801713594",
+      "dateCreated": "2019-05-13 01:09:22.746",
+      "dateStarted": "2019-05-13 01:09:46.740",
+      "dateFinished": "2019-05-13 01:09:46.760",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%python\n# split data range\nmin_data_len \u003d min(len(category_map[\u0027breaker_box\u0027]), len(category_map[\u0027sump_pump\u0027]), len(category_map[\u0027washer\u0027]))\nsample \u003d (0,8)\ntrain \u003d (0, int(min_data_len * 0.7))\nvalidation \u003d (int(min_data_len * 0.7), int(min_data_len * 0.85))\ntest \u003d (int(min_data_len * 0.85), int(min_data_len * 1))\n\ndef split_dataset(from_idx, to_idx):\n    return category_map[\u0027breaker_box\u0027][from_idx: to_idx] + category_map[\u0027sump_pump\u0027][from_idx: to_idx] + category_map[\u0027washer\u0027][from_idx: to_idx]",
+      "user": "anonymous",
+      "dateUpdated": "2019-05-13 01:12:35.311",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1557709786620_-1272165421",
+      "id": "20190513-010946_925370296",
+      "dateCreated": "2019-05-13 01:09:46.620",
+      "dateStarted": "2019-05-13 01:12:35.370",
+      "dateFinished": "2019-05-13 01:12:35.389",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%python\n# sample set is for developing model and debugging\n# because debugging with large dataset takes a long time\nsample_set \u003d split_dataset(sample[0], sample[1])\nwrite_lst(sample_set, \u0027./data/household\u0027, \u0027/data/household/sample/household.lst\u0027)",
+      "user": "anonymous",
+      "dateUpdated": "2019-05-13 01:13:07.445",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1557709831387_-1912387369",
+      "id": "20190513-011031_954906260",
+      "dateCreated": "2019-05-13 01:10:31.387",
+      "dateStarted": "2019-05-13 01:13:07.504",
+      "dateFinished": "2019-05-13 01:13:07.529",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%python\ntrain_set \u003d split_dataset(train[0], train[1])\nwrite_lst(train_set, \u0027/data/household\u0027, \u0027/data/household/train/household.lst\u0027)",
+      "user": "anonymous",
+      "dateUpdated": "2019-05-13 01:13:37.555",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1557709957611_-1371532708",
+      "id": "20190513-011237_1278084558",
+      "dateCreated": "2019-05-13 01:12:37.611",
+      "dateStarted": "2019-05-13 01:13:37.695",
+      "dateFinished": "2019-05-13 01:13:37.719",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%python\nvalidation_set \u003d split_dataset(validation[0], validation[1])\nwrite_lst(validation_set, \u0027/data/household\u0027, \u0027/data/household/validation/household.lst\u0027)",
+      "user": "anonymous",
+      "dateUpdated": "2019-05-13 01:14:11.187",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1557710017555_-1837987750",
+      "id": "20190513-011337_395802822",
+      "dateCreated": "2019-05-13 01:13:37.556",
+      "dateStarted": "2019-05-13 01:14:11.234",
+      "dateFinished": "2019-05-13 01:14:11.260",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%python\ntest_set \u003d split_dataset(test[0], test[1])\nwrite_lst(validation_set, \u0027/data/household\u0027, \u0027/data/household/test/household.lst\u0027)",
+      "user": "anonymous",
+      "dateUpdated": "2019-05-13 01:14:35.871",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1557710032934_-1037187321",
+      "id": "20190513-011352_276585301",
+      "dateCreated": "2019-05-13 01:13:52.934",
+      "dateStarted": "2019-05-13 01:14:35.961",
+      "dateFinished": "2019-05-13 01:14:35.989",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%python\nfrom mxnet.gluon.model_zoo.vision import mobilenet1_0",
+      "user": "anonymous",
+      "dateUpdated": "2019-05-13 01:14:47.690",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1557710075872_-1864628075",
+      "id": "20190513-011435_1157507771",
+      "dateCreated": "2019-05-13 01:14:35.872",
+      "dateStarted": "2019-05-13 01:14:47.811",
+      "dateFinished": "2019-05-13 01:14:49.318",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%python\npretrained_net \u003d mobilenet1_0(pretrained\u003dTrue)\nprint(pretrained_net)",
+      "user": "anonymous",
+      "dateUpdated": "2019-05-13 01:14:56.585",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Downloading /root/.mxnet/models/mobilenet1.0-6b8c5106.zip from https://apache-mxnet.s3-accelerate.dualstack.amazonaws.com/gluon/models/mobilenet1.0-6b8c5106.zip...\nMobileNet(\n  (features): HybridSequential(\n    (0): Conv2D(3 -\u003e 32, kernel_size\u003d(3, 3), stride\u003d(2, 2), padding\u003d(1, 1), bias\u003dFalse)\n    (1): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d32)\n    (2): Activation(relu)\n    (3): Conv2D(1 -\u003e 32, kernel_size\u003d(3, 3), stride\u003d(1, 1), padding\u003d(1, 1), groups\u003d32, bias\u003dFalse)\n    (4): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d32)\n    (5): Activation(relu)\n    (6): Conv2D(32 -\u003e 64, kernel_size\u003d(1, 1), stride\u003d(1, 1), bias\u003dFalse)\n    (7): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d64)\n    (8): Activation(relu)\n    (9): Conv2D(1 -\u003e 64, kernel_size\u003d(3, 3), stride\u003d(2, 2), padding\u003d(1, 1), groups\u003d64, bias\u003dFalse)\n    (10): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d64)\n    (11): Activation(relu)\n    (12): Conv2D(64 -\u003e 128, kernel_size\u003d(1, 1), stride\u003d(1, 1), bias\u003dFalse)\n    (13): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d128)\n    (14): Activation(relu)\n    (15): Conv2D(1 -\u003e 128, kernel_size\u003d(3, 3), stride\u003d(1, 1), padding\u003d(1, 1), groups\u003d128, bias\u003dFalse)\n    (16): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d128)\n    (17): Activation(relu)\n    (18): Conv2D(128 -\u003e 128, kernel_size\u003d(1, 1), stride\u003d(1, 1), bias\u003dFalse)\n    (19): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d128)\n    (20): Activation(relu)\n    (21): Conv2D(1 -\u003e 128, kernel_size\u003d(3, 3), stride\u003d(2, 2), padding\u003d(1, 1), groups\u003d128, bias\u003dFalse)\n    (22): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d128)\n    (23): Activation(relu)\n    (24): Conv2D(128 -\u003e 256, kernel_size\u003d(1, 1), stride\u003d(1, 1), bias\u003dFalse)\n    (25): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d256)\n    (26): Activation(relu)\n    (27): Conv2D(1 -\u003e 256, kernel_size\u003d(3, 3), stride\u003d(1, 1), padding\u003d(1, 1), groups\u003d256, bias\u003dFalse)\n    (28): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d256)\n    (29): Activation(relu)\n    (30): Conv2D(256 -\u003e 256, kernel_size\u003d(1, 1), stride\u003d(1, 1), bias\u003dFalse)\n    (31): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d256)\n    (32): Activation(relu)\n    (33): Conv2D(1 -\u003e 256, kernel_size\u003d(3, 3), stride\u003d(2, 2), padding\u003d(1, 1), groups\u003d256, bias\u003dFalse)\n    (34): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d256)\n    (35): Activation(relu)\n    (36): Conv2D(256 -\u003e 512, kernel_size\u003d(1, 1), stride\u003d(1, 1), bias\u003dFalse)\n    (37): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d512)\n    (38): Activation(relu)\n    (39): Conv2D(1 -\u003e 512, kernel_size\u003d(3, 3), stride\u003d(1, 1), padding\u003d(1, 1), groups\u003d512, bias\u003dFalse)\n    (40): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d512)\n    (41): Activation(relu)\n    (42): Conv2D(512 -\u003e 512, kernel_size\u003d(1, 1), stride\u003d(1, 1), bias\u003dFalse)\n    (43): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d512)\n    (44): Activation(relu)\n    (45): Conv2D(1 -\u003e 512, kernel_size\u003d(3, 3), stride\u003d(1, 1), padding\u003d(1, 1), groups\u003d512, bias\u003dFalse)\n    (46): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d512)\n    (47): Activation(relu)\n    (48): Conv2D(512 -\u003e 512, kernel_size\u003d(1, 1), stride\u003d(1, 1), bias\u003dFalse)\n    (49): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d512)\n    (50): Activation(relu)\n    (51): Conv2D(1 -\u003e 512, kernel_size\u003d(3, 3), stride\u003d(1, 1), padding\u003d(1, 1), groups\u003d512, bias\u003dFalse)\n    (52): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d512)\n    (53): Activation(relu)\n    (54): Conv2D(512 -\u003e 512, kernel_size\u003d(1, 1), stride\u003d(1, 1), bias\u003dFalse)\n    (55): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d512)\n    (56): Activation(relu)\n    (57): Conv2D(1 -\u003e 512, kernel_size\u003d(3, 3), stride\u003d(1, 1), padding\u003d(1, 1), groups\u003d512, bias\u003dFalse)\n    (58): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d512)\n    (59): Activation(relu)\n    (60): Conv2D(512 -\u003e 512, kernel_size\u003d(1, 1), stride\u003d(1, 1), bias\u003dFalse)\n    (61): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d512)\n    (62): Activation(relu)\n    (63): Conv2D(1 -\u003e 512, kernel_size\u003d(3, 3), stride\u003d(1, 1), padding\u003d(1, 1), groups\u003d512, bias\u003dFalse)\n    (64): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d512)\n    (65): Activation(relu)\n    (66): Conv2D(512 -\u003e 512, kernel_size\u003d(1, 1), stride\u003d(1, 1), bias\u003dFalse)\n    (67): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d512)\n    (68): Activation(relu)\n    (69): Conv2D(1 -\u003e 512, kernel_size\u003d(3, 3), stride\u003d(2, 2), padding\u003d(1, 1), groups\u003d512, bias\u003dFalse)\n    (70): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d512)\n    (71): Activation(relu)\n    (72): Conv2D(512 -\u003e 1024, kernel_size\u003d(1, 1), stride\u003d(1, 1), bias\u003dFalse)\n    (73): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d1024)\n    (74): Activation(relu)\n    (75): Conv2D(1 -\u003e 1024, kernel_size\u003d(3, 3), stride\u003d(1, 1), padding\u003d(1, 1), groups\u003d1024, bias\u003dFalse)\n    (76): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d1024)\n    (77): Activation(relu)\n    (78): Conv2D(1024 -\u003e 1024, kernel_size\u003d(1, 1), stride\u003d(1, 1), bias\u003dFalse)\n    (79): BatchNorm(fix_gamma\u003dFalse, use_global_stats\u003dFalse, axis\u003d1, momentum\u003d0.9, eps\u003d1e-05, in_channels\u003d1024)\n    (80): Activation(relu)\n    (81): GlobalAvgPool2D(size\u003d(1, 1), stride\u003d(1, 1), padding\u003d(0, 0), ceil_mode\u003dTrue)\n    (82): Flatten\n  )\n  (output): Dense(1024 -\u003e 1000, linear)\n)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1557710087690_1894626171",
+      "id": "20190513-011447_416794406",
+      "dateCreated": "2019-05-13 01:14:47.691",
+      "dateStarted": "2019-05-13 01:14:56.731",
+      "dateFinished": "2019-05-13 01:14:59.522",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%python\nnet \u003d mobilenet1_0(classes\u003d3)",
+      "user": "anonymous",
+      "dateUpdated": "2019-05-13 01:15:08.513",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1557710096585_-32026860",
+      "id": "20190513-011456_184704299",
+      "dateCreated": "2019-05-13 01:14:56.585",
+      "dateStarted": "2019-05-13 01:15:08.607",
+      "dateFinished": "2019-05-13 01:15:08.649",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%python\nfrom mxnet import init\nnet.features \u003d pretrained_net.features\nnet.output.initialize(init.Xavier())",
+      "user": "anonymous",
+      "dateUpdated": "2019-05-13 01:15:18.388",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1557710108513_-750819841",
+      "id": "20190513-011508_339204879",
+      "dateCreated": "2019-05-13 01:15:08.513",
+      "dateStarted": "2019-05-13 01:15:18.459",
+      "dateFinished": "2019-05-13 01:15:18.479",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%python\nfrom mxnet.image import color_normalize\nfrom mxnet import image\n\ntrain_augs \u003d [\n    image.HorizontalFlipAug(0.5),\n    image.BrightnessJitterAug(.3),\n    image.HueJitterAug(.1)\n]\ntest_augs \u003d [\n    image.ResizeAug(224),\n    image.CenterCropAug((224, 224))\n]\n\n\ndef transform(data, label, augs):\n    data \u003d data.astype(\u0027float32\u0027)\n    for aug in augs:\n        data \u003d aug(data)\n    data \u003d nd.transpose(data, (2,0,1))\n    return data, nd.array([label]).asscalar().astype(\u0027float32\u0027)",
+      "user": "anonymous",
+      "dateUpdated": "2019-05-13 01:22:57.163",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1557710118388_1091472060",
+      "id": "20190513-011518_1702845743",
+      "dateCreated": "2019-05-13 01:15:18.388",
+      "dateStarted": "2019-05-13 01:22:57.277",
+      "dateFinished": "2019-05-13 01:22:57.297",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\n\ncurl -o im2rec.py https://raw.githubusercontent.com/garysieling/transfer-learning-with-gluon/master/im2rec.py\npython3 im2rec.py ./data/train . --center-crop True --resize 224 --pack-label True\npython3 im2rec.py ./data/validation . --center-crop True --resize 224 --pack-label True\npython3 im2rec.py ./data/test . --center-crop True --resize 224 --pack-label True\npython3 im2rec.py ./data/sample . --center-crop True --resize 224 --pack-label True\n",
+      "user": "anonymous",
+      "dateUpdated": "2019-05-13 01:26:35.971",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r100 13811  100 13811    0     0  38814      0 --:--:-- --:--:-- --:--:-- 39235\nTraceback (most recent call last):\n  File \"im2rec.py\", line 28, in \u003cmodule\u003e\n    import cv2\nImportError: No module named \u0027cv2\u0027\nTraceback (most recent call last):\n  File \"im2rec.py\", line 28, in \u003cmodule\u003e\n    import cv2\nImportError: No module named \u0027cv2\u0027\nTraceback (most recent call last):\n  File \"im2rec.py\", line 28, in \u003cmodule\u003e\n    import cv2\nImportError: No module named \u0027cv2\u0027\nTraceback (most recent call last):\n  File \"im2rec.py\", line 28, in \u003cmodule\u003e\n    import cv2\nImportError: No module named \u0027cv2\u0027\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "ExitValue: 1"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1557710725689_1470757423",
+      "id": "20190513-012525_503302828",
+      "dateCreated": "2019-05-13 01:25:25.689",
+      "dateStarted": "2019-05-13 01:26:36.054",
+      "dateFinished": "2019-05-13 01:26:41.935",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%python\nfrom mxnet.gluon.data.vision import ImageRecordDataset\n\ntrain_rec \u003d \u0027/data/household/train/household.rec\u0027\nvalidation_rec \u003d \u0027/data/household/validation/household.rec\u0027\ntest_rec \u003d \u0027/data/household/test/household.rec\u0027\nsample_rec \u003d \u0027/data/household/sample/household.rec\u0027\n\ntrainIterator \u003d ImageRecordDataset(\n    filename\u003dtrain_rec, \n    transform\u003dlambda X, y: transform(X, y, train_augs)\n)\nvalidationIterator \u003d ImageRecordDataset(\n    filename\u003dvalidation_rec,\n    transform\u003dlambda X, y: transform(X, y, test_augs)\n)\ntestIterator \u003d ImageRecordDataset(\n    filename\u003dtest_rec,\n    transform\u003dlambda X, y: transform(X, y, test_augs)\n)\nsampleIterator \u003d ImageRecordDataset(\n    filename\u003dsample_rec,\n    transform\u003dlambda X, y: transform(X, y, test_augs)\n)",
+      "user": "anonymous",
+      "dateUpdated": "2019-05-13 01:23:40.828",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Traceback (most recent call last):\n  File \"/tmp/zeppelin_python-6068078478894810767.py\", line 307, in \u003cmodule\u003e\n    exec(code, _zcUserQueryNameSpace)\n  File \"\u003cstdin\u003e\", line 8, in \u003cmodule\u003e\n  File \"/usr/local/lib/python3.5/dist-packages/mxnet/gluon/data/vision/datasets.py\", line 246, in __init__\n    super(ImageRecordDataset, self).__init__(filename)\n  File \"/usr/local/lib/python3.5/dist-packages/mxnet/gluon/data/dataset.py\", line 184, in __init__\n    self._record \u003d recordio.MXIndexedRecordIO(self.idx_file, self.filename, \u0027r\u0027)\n  File \"/usr/local/lib/python3.5/dist-packages/mxnet/recordio.py\", line 241, in __init__\n    super(MXIndexedRecordIO, self).__init__(uri, flag)\n  File \"/usr/local/lib/python3.5/dist-packages/mxnet/recordio.py\", line 71, in __init__\n    self.open()\n  File \"/usr/local/lib/python3.5/dist-packages/mxnet/recordio.py\", line 244, in open\n    super(MXIndexedRecordIO, self).open()\n  File \"/usr/local/lib/python3.5/dist-packages/mxnet/recordio.py\", line 79, in open\n    check_call(_LIB.MXRecordIOReaderCreate(self.uri, ctypes.byref(self.handle)))\n  File \"/usr/local/lib/python3.5/dist-packages/mxnet/base.py\", line 252, in check_call\n    raise MXNetError(py_str(_LIB.MXGetLastError()))\nmxnet.base.MXNetError: [01:23:41] src/io/local_filesys.cc:199: Check failed: allow_null  LocalFileSystem::Open \"/data/household/train/household.rec\": No such file or directory\n\nStack trace returned 10 entries:\n[bt] (0) /usr/local/lib/python3.5/dist-packages/mxnet/libmxnet.so(+0x23d55a) [0x7fb959c5955a]\n[bt] (1) /usr/local/lib/python3.5/dist-packages/mxnet/libmxnet.so(+0x32de3b4) [0x7fb95ccfa3b4]\n[bt] (2) /usr/local/lib/python3.5/dist-packages/mxnet/libmxnet.so(+0x32d5e9a) [0x7fb95ccf1e9a]\n[bt] (3) /usr/local/lib/python3.5/dist-packages/mxnet/libmxnet.so(MXRecordIOReaderCreate+0x2d) [0x7fb95c5195fd]\n[bt] (4) /usr/lib/python3.5/lib-dynload/_ctypes.cpython-35m-x86_64-linux-gnu.so(ffi_call_unix64+0x4c) [0x7fb9671b9e20]\n[bt] (5) /usr/lib/python3.5/lib-dynload/_ctypes.cpython-35m-x86_64-linux-gnu.so(ffi_call+0x2eb) [0x7fb9671b988b]\n[bt] (6) /usr/lib/python3.5/lib-dynload/_ctypes.cpython-35m-x86_64-linux-gnu.so(_ctypes_callproc+0x49a) [0x7fb9671b401a]\n[bt] (7) /usr/lib/python3.5/lib-dynload/_ctypes.cpython-35m-x86_64-linux-gnu.so(+0x9fcb) [0x7fb9671a7fcb]\n[bt] (8) python3(PyObject_Call+0x47) [0x5c20e7]\n[bt] (9) python3(PyEval_EvalFrameEx+0x4ed6) [0x53b656]\n\n\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/tmp/zeppelin_python-6068078478894810767.py\", line 319, in \u003cmodule\u003e\n    raise Exception(traceback.format_exc())\nException: Traceback (most recent call last):\n  File \"/tmp/zeppelin_python-6068078478894810767.py\", line 307, in \u003cmodule\u003e\n    exec(code, _zcUserQueryNameSpace)\n  File \"\u003cstdin\u003e\", line 8, in \u003cmodule\u003e\n  File \"/usr/local/lib/python3.5/dist-packages/mxnet/gluon/data/vision/datasets.py\", line 246, in __init__\n    super(ImageRecordDataset, self).__init__(filename)\n  File \"/usr/local/lib/python3.5/dist-packages/mxnet/gluon/data/dataset.py\", line 184, in __init__\n    self._record \u003d recordio.MXIndexedRecordIO(self.idx_file, self.filename, \u0027r\u0027)\n  File \"/usr/local/lib/python3.5/dist-packages/mxnet/recordio.py\", line 241, in __init__\n    super(MXIndexedRecordIO, self).__init__(uri, flag)\n  File \"/usr/local/lib/python3.5/dist-packages/mxnet/recordio.py\", line 71, in __init__\n    self.open()\n  File \"/usr/local/lib/python3.5/dist-packages/mxnet/recordio.py\", line 244, in open\n    super(MXIndexedRecordIO, self).open()\n  File \"/usr/local/lib/python3.5/dist-packages/mxnet/recordio.py\", line 79, in open\n    check_call(_LIB.MXRecordIOReaderCreate(self.uri, ctypes.byref(self.handle)))\n  File \"/usr/local/lib/python3.5/dist-packages/mxnet/base.py\", line 252, in check_call\n    raise MXNetError(py_str(_LIB.MXGetLastError()))\nmxnet.base.MXNetError: [01:23:41] src/io/local_filesys.cc:199: Check failed: allow_null  LocalFileSystem::Open \"/data/household/train/household.rec\": No such file or directory\n\nStack trace returned 10 entries:\n[bt] (0) /usr/local/lib/python3.5/dist-packages/mxnet/libmxnet.so(+0x23d55a) [0x7fb959c5955a]\n[bt] (1) /usr/local/lib/python3.5/dist-packages/mxnet/libmxnet.so(+0x32de3b4) [0x7fb95ccfa3b4]\n[bt] (2) /usr/local/lib/python3.5/dist-packages/mxnet/libmxnet.so(+0x32d5e9a) [0x7fb95ccf1e9a]\n[bt] (3) /usr/local/lib/python3.5/dist-packages/mxnet/libmxnet.so(MXRecordIOReaderCreate+0x2d) [0x7fb95c5195fd]\n[bt] (4) /usr/lib/python3.5/lib-dynload/_ctypes.cpython-35m-x86_64-linux-gnu.so(ffi_call_unix64+0x4c) [0x7fb9671b9e20]\n[bt] (5) /usr/lib/python3.5/lib-dynload/_ctypes.cpython-35m-x86_64-linux-gnu.so(ffi_call+0x2eb) [0x7fb9671b988b]\n[bt] (6) /usr/lib/python3.5/lib-dynload/_ctypes.cpython-35m-x86_64-linux-gnu.so(_ctypes_callproc+0x49a) [0x7fb9671b401a]\n[bt] (7) /usr/lib/python3.5/lib-dynload/_ctypes.cpython-35m-x86_64-linux-gnu.so(+0x9fcb) [0x7fb9671a7fcb]\n[bt] (8) python3(PyObject_Call+0x47) [0x5c20e7]\n[bt] (9) python3(PyEval_EvalFrameEx+0x4ed6) [0x53b656]\n\n\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1557710129213_1387267233",
+      "id": "20190513-011529_1743559970",
+      "dateCreated": "2019-05-13 01:15:29.213",
+      "dateStarted": "2019-05-13 01:23:40.994",
+      "dateFinished": "2019-05-13 01:23:41.050",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%python\n",
+      "user": "anonymous",
+      "dateUpdated": "2019-05-13 01:23:40.828",
       "config": {},
       "settings": {
         "params": {},
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1557598631982_-1912712365",
-      "id": "20190511-181711_1410267847",
-      "dateCreated": "2019-05-11 18:17:11.982",
+      "jobName": "paragraph_1557710620828_-216032758",
+      "id": "20190513-012340_952595436",
+      "dateCreated": "2019-05-13 01:23:40.828",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
