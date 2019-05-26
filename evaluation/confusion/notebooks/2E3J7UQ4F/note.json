@@ -499,7 +499,7 @@
     {
       "text": "print (\"%html \")\n\nval value \u003d z.select(\"tag\",\n       (new File(root))\n           .listFiles\n           .filter(_.isDirectory)\n           .filter(\n               _.listFiles.size \u003e 0\n           )\n           .map(\n               _.toString.substring(\"/data/images/household/\".length)\n           )\n           .map( \n               path \u003d\u003e (path, path)\n           ).seqm\n           \n\nshowImages(value.toString)",
       "user": "anonymous",
-      "dateUpdated": "2019-05-26 11:08:51.349",
+      "dateUpdated": "2019-05-26 11:43:45.207",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -525,8 +525,8 @@
       "jobName": "paragraph_1549834344917_-1503271918",
       "id": "20190210-213224_738655629",
       "dateCreated": "2019-02-10 21:32:24.917",
-      "dateStarted": "2019-05-26 11:08:51.385",
-      "dateFinished": "2019-05-26 11:08:51.398",
+      "dateStarted": "2019-05-26 11:43:45.246",
+      "dateFinished": "2019-05-26 11:43:45.255",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
