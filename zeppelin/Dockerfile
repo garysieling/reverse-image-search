@@ -15,4 +15,6 @@ RUN pip3.7 install mxnet
 RUN apt-get -y install ffmpeg
 RUN pip3.7 install --upgrade youtube_dl
 RUN pip3.7 install opencv-python
+RUN apt-get -y install jq
 COPY interpreter.json /zeppelin/conf/interpreter.json
+COPY zeppelin-site.xml /zeppelin/conf/zeppelin-site.xml
