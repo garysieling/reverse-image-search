@@ -1,0 +1,44 @@
+FROM nvidia/cuda:10.0-base
+#FROM apache/zeppelin:0.8.1
+RUN echo "start"
+RUN apt-get -y update && apt-get -y upgrade
+
+# needed so pip doesn't make matplotlib think python is too old
+# RUN add-apt-repository ppa:deadsnakes/ppa
+RUN apt-get update
+RUN apt-get -y install exiv2 python3 build-essential git clang ccache libxml2-utils cmake python3 libexpat1-dev libz-dev zlib1g-dev libssh-dev libcurl4-openssl-dev libgtest-dev google-mock
+RUN apt-get -y install curl wget
+RUN curl https://bootstrap.pypa.io/get-pip.py | python3
+
+RUN pip3 install seaborn pandas matplotlib bokeh xarray awscli
+
+# ERROR: mxnet 1.4.1 has requirement numpy<1.15.0,>=1.8.2, but you'll have numpy 1.16.3 which is incompatible
+# it looks like this next one will forcibly downgrade numpy
+RUN pip3 install mxnet-cu90mkl
+RUN apt-get -y install ffmpeg
+RUN pip3 install --upgrade youtube_dl
+RUN pip3 install opencv-python
+RUN apt-get -y install jq
+
+RUN pip3 install awscli --upgrade
+
+ENV ZEPPELIN_PORT 8080
+ENV ZEPPELIN_HOME /usr/local/zeppelin
+
+RUN wget http://apache.cs.utah.edu/zeppelin/zeppelin-0.8.1/zeppelin-0.8.1-bin-all.tgz && \
+  tar -zxf zeppelin-0.8.1-bin-all.tgz -C /usr/local/ && \
+  mv /usr/local/zeppelin* $ZEPPELIN_HOME
+
+RUN apt-get update && \
+  apt-get install -y software-properties-common && \
+  add-apt-repository ppa:openjdk-r/ppa && \     
+  apt-get update && \
+  apt-get install -y openjdk-8-jdk
+
+COPY interpreter.json /zeppelin/conf/interpreter.json
+COPY zeppelin-site.xml /zeppelin/conf/zeppelin-site.xml
+
+ENV ZEPPELIN_NOTEBOOK_DIR /zeppelin/notebook
+
+WORKDIR $ZEPPELIN_HOME
+CMD bin/zeppelin.sh
