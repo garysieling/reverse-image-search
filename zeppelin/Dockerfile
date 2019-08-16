@@ -24,4 +24,5 @@ RUN pip3.7 install mxboard
 RUN pip3.7 install cython
 RUN apt-get install -y python3.7-dev libatlas-base-dev
 RUN pip3.7 install tsne
+RUN pip3.7 install argparse
 RUN pip3.7 install tensorboard
