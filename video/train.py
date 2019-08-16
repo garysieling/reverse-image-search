@@ -2,6 +2,19 @@ import os
 from mxnet import gluon
 from mxnet import nd
 
+# TODO
+# app to collect / upload tagged video
+# can this model be retrained?
+# lambda to retrain on upload
+# do some hyperparameter tuning
+# can I reassmble videos
+# per video stats!
+# confusion matrix complete
+# nest the videos in the input set
+# gpu setup (needs cuda 9.2, not 10)
+# demo of basement
+# reconstitution of videos
+
 root = "/projects/reverse-image-search/evaluation/confusion"
 
 training_map = {
@@ -222,6 +235,6 @@ def train(net, ctx,
 
 
 import mxnet as mx
-ctx = mx.gpu()
-train(net, ctx, batch_size=64, epochs=10, learning_rate=0.003)
+ctx = mx.cpu()
+train(net, ctx, batch_size=32, epochs=10, learning_rate=0.001)
 

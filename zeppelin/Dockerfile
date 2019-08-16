@@ -19,5 +19,9 @@ RUN pip3.7 install opencv-python
 RUN apt-get -y install jq
 COPY interpreter.json /zeppelin/conf/interpreter.json
 COPY zeppelin-site.xml /zeppelin/conf/zeppelin-site.xml
-
 RUN pip3.7 install awscli --upgrade
+RUN pip3.7 install mxboard
+RUN pip3.7 install cython
+RUN apt-get install -y python3.7-dev libatlas-base-dev
+RUN pip3.7 install tsne
+RUN pip3.7 install tensorboard
